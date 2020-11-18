@@ -91,8 +91,8 @@ public class WeaponManager
 	public static void loadGuns()
 	{
 		weapons.clear();
-		weapons.add(new Weapon("Grenade", WeaponType.GRENADE));
-		weapons.add(new Weapon("Monkey Bomb", WeaponType.MONKEY_BOMB));
+		weapons.add(new Weapon("Slime Sploder", WeaponType.GRENADE));
+		weapons.add(new Weapon("Distractinator", WeaponType.MONKEY_BOMB));
 
 		CustomConfig conf = ConfigManager.getConfig(COMZConfig.GUNS);
 		PlayerWeaponManager.customResources = conf.getString("Resource Sounds", "off").equalsIgnoreCase("on");

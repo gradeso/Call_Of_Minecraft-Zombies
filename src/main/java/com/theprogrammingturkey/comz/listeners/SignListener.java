@@ -67,8 +67,8 @@ public class SignListener implements Listener
 		GAME_SIGNS.put("door", door);
 
 		GunSign gun = new GunSign();
-		GAME_SIGNS.put("Gun", gun);
-		GAME_SIGNS.put("gun", gun);
+		GAME_SIGNS.put("Weapon", gun);
+		GAME_SIGNS.put("weapon", gun);
 
 		PowerSign power = new PowerSign();
 		GAME_SIGNS.put("Power", power);

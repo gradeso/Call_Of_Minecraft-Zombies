@@ -32,7 +32,7 @@ public class GunSign implements IGameSign
 
 		if(gunType == null)
 		{
-			player.sendRawMessage(COMZombies.PREFIX + " Sorry! That gun doesn't seem to exist!");
+			player.sendRawMessage(COMZombies.PREFIX + " Sorry! That weapon doesn't seem to exist!");
 			return;
 		}
 
@@ -79,15 +79,15 @@ public class GunSign implements IGameSign
 
 		if(thirdLine.equalsIgnoreCase(""))
 		{
-			event.setLine(0, ChatColor.RED + "" + ChatColor.BOLD + "No gun?");
+			event.setLine(0, ChatColor.RED + "" + ChatColor.BOLD + "No weapon?");
 			return;
 		}
 		event.setLine(0, ChatColor.RED + "[Zombies]");
-		event.setLine(1, ChatColor.AQUA + "Gun");
+		event.setLine(1, ChatColor.AQUA + "Weapon");
 		event.setLine(2, thirdLine);
 		if(WeaponManager.getGun(thirdLine) == null)
 		{
-			event.setLine(0, ChatColor.RED + "Invalid Gun!");
+			event.setLine(0, ChatColor.RED + "Invalid Weapon!");
 			event.setLine(1, "");
 			event.setLine(2, "");
 			event.setLine(3, "");
