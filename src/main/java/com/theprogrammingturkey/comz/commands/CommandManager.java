@@ -80,6 +80,14 @@ public class CommandManager implements CommandExecutor
 		commandList.put("join", new JoinCommand());
 		commandList.put("j", commandList.get("join"));
 		commandList.put("joinarena", commandList.get("join"));
+		
+		// Puts you if applicable in the arena specified or not specified:
+		// Perm
+		// - zombies.invite
+		// - zombies.user
+		commandList.put("invite", new InviteCommand());
+		commandList.put("i", commandList.get("invite"));
+		commandList.put("invitearena", commandList.get("invite"));
 
 		// Base leaderboard command:
 		// Perm
