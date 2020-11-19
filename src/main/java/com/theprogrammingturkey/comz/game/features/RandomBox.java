@@ -45,6 +45,8 @@ public class RandomBox
 	private Weapon weapon;
 	private Item item;
 	private ArmorStand namePlate;
+	//keeps track of how many times we rolled a box
+	private int rollCount;
 
 
 	public RandomBox(Location loc, BlockFace facing, Game game, String key, int cost)
@@ -57,6 +59,7 @@ public class RandomBox
 		this.running = false;
 		this.gunSelected = false;
 		this.isTeddyBear = false;
+		this.rollCount = 0;
 	}
 
 	public void Start(final Player player, int PointsNeeded)
@@ -126,7 +129,7 @@ public class RandomBox
 					}
 					else if(time == 0)
 					{
-						if(!boxGame.isFireSale() && !boxGame.boxManager.isMultiBox() && boxGame.getTeddyBearPercent() != 0 && COMZombies.rand.nextInt(boxGame.getTeddyBearPercent()) == 0)
+						if(!boxGame.isFireSale() && !boxGame.boxManager.isMultiBox() && boxGame.getTeddyBearPercent() != 0 && COMZombies.rand.nextInt(Math.max(1, (2 * boxGame.getTeddyBearPercent() - rollCount))) == 0 && rollCount > 4)
 						{
 							CommandUtil.sendMessageToPlayer(player, ChatColor.DARK_RED + "Teddy Bear!!!!!!");
 							item.setItemStack(new ItemStack(Material.TOTEM_OF_UNDYING));
@@ -153,6 +156,7 @@ public class RandomBox
 						{
 							player.getWorld().playSound(boxLoc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
 							gunSelected = true;
+							rollCount++;
 						}
 					}
 					else if(time == -15)
@@ -191,6 +195,7 @@ public class RandomBox
 
 	public void reset()
 	{
+		rollCount = 0;
 		gunSelected = false;
 		isTeddyBear = false;
 		if(item != null)
