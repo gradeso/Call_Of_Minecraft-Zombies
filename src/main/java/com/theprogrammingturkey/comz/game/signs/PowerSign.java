@@ -12,7 +12,7 @@ public class PowerSign implements IGameSign
 	@Override
 	public void onBreak(Game game, Player player, Sign sign)
 	{
-
+		game.removePower(player);
 	}
 
 	@Override
@@ -36,7 +36,13 @@ public class PowerSign implements IGameSign
 		sign.setLine(0, ChatColor.RED + "[Zombies]");
 		sign.setLine(1, ChatColor.AQUA + "Power");
 		//TODO: Check that there are no other power signs
-		game.removePower(player);
+		//enable power if a sign exists
+		//remove power if all signs are destroyed
+		//game.removePower(player);
+		if(!game.hasPower()) 
+		{
+			game.enablePower(player);
+		}
 	}
 
 	@Override

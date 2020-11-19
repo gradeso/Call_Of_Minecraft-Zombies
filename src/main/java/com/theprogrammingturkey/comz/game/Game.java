@@ -390,6 +390,16 @@ public class Game
 		conf.saveConfig();
 		conf.reloadConfig();
 	}
+	
+	public void enablePower(Player player)
+	{
+		CustomConfig conf = ConfigManager.getConfig(COMZConfig.ARENAS);
+		conf.set(this.getName() + ".Power", true);
+		powerSetup = true;
+		CommandUtil.sendMessageToPlayer(player, ChatColor.RED + "Power enabled!");
+		conf.saveConfig();
+		conf.reloadConfig();
+	}
 
 	public void showSpawnLocations()
 	{
