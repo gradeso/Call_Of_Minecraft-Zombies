@@ -992,7 +992,7 @@ public class Game
 		int pitch5 = conf.getInt(arenaName + ".LobbySpawn.pitch");
 		int yaw5 = conf.getInt(arenaName + ".LobbySpawn.yaw");
 		maxPlayers = conf.getInt(arenaName + ".maxPlayers", 8);
-		teddyBearPercent = conf.getInt(arenaName + ".TeddyBearChance", 100);
+		teddyBearPercent = conf.getInt(arenaName + ".TeddyBearChance", 5);
 		Location minLoc = new Location(world, x1, y1, z1);
 		Location maxLoc = new Location(world, x2, y2, z2);
 		Location pwarp = new Location(world, x3, y3, z3, yaw3, pitch3);

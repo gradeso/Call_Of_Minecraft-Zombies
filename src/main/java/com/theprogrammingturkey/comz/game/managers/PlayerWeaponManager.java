@@ -20,7 +20,7 @@ public class PlayerWeaponManager
 	private List<GunInstance> guns = new ArrayList<>();
 	private Player player;
 
-	public static boolean customResources = false;
+	public static boolean customResources = true;
 
 	public PlayerWeaponManager(Player player)
 	{

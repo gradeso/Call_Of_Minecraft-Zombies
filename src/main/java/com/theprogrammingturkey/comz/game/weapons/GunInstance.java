@@ -135,7 +135,7 @@ public class GunInstance
 	public void reload()
 	{
 		if(PlayerWeaponManager.customResources)
-			player.getWorld().playSound(player.getLocation(), Sound.BLOCK_ANVIL_USE, 1, 1);
+			player.getWorld().playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 1, 1.7f);
 
 		if(GameManager.INSTANCE.isPlayerInGame(player))
 		{
@@ -210,7 +210,7 @@ public class GunInstance
 		if(totalAmmo == 0 && clipAmmo == 0)
 		{
 			CommandUtil.sendMessageToPlayer(player, ChatColor.RED + "No ammo!");
-			player.getWorld().playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);
+			player.getWorld().playSound(player.getLocation(), Sound.BLOCK_IRON_TRAPDOOR_CLOSE, 1, 2);
 			return false;
 		}
 
@@ -226,93 +226,606 @@ public class GunInstance
 			switch(gun.getName())
 			{
 				case "B23R":
-					world.playSound(player.getLocation(), Sound.BLOCK_LAVA_POP, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
 					break;
 				case "Executioner":
-					world.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 0.6f, 0);
 					break;
 				case "Five-Seven":
-					world.playSound(player.getLocation(), Sound.ENTITY_BAT_HURT, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					world.playSound(player.getLocation(), Sound.ENTITY_BAT_HURT, 0.5f, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0);
 					break;
 				case "Kap-40":
-					world.playSound(player.getLocation(), Sound.ENTITY_BLAZE_HURT, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
 					break;
 				case "M1911":
-					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BURP, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_BEE_STING, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
 					break;
 				case "Python":
-					world.playSound(player.getLocation(), Sound.BLOCK_ANVIL_BREAK, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					//world.playSound(player.getLocation(), Sound.BLOCK_ANVIL_BREAK, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.3f, 2);
 					break;
 				case "M1216":
-					world.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					//world.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
+					
+					
 					break;
 				case "Olympia":
-					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_SMALL_FALL, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
 					break;
 				case "R870 MCS":
-					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
 					break;
 				case "S12":
-					world.playSound(player.getLocation(), Sound.ENTITY_BLAZE_HURT, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					//world.playSound(player.getLocation(), Sound.ENTITY_BLAZE_HURT, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
 					break;
 				case "AN-94":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
 					world.playSound(player.getLocation(), Sound.ENTITY_IRON_GOLEM_HURT, 1, 1);
 					break;
 				case "Colt M16A1":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
 					world.playSound(player.getLocation(), Sound.ENTITY_IRON_GOLEM_STEP, 1, 1);
 					break;
 				case "FAL":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.5f, 0.8f);
 					world.playSound(player.getLocation(), Sound.ITEM_FLINTANDSTEEL_USE, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
 					break;
 				case "M8A1":
-					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.8f);
+					//world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
 					break;
 				case "M14":
-					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
 					break;
 				case "M27":
-					world.playSound(player.getLocation(), Sound.ENTITY_MAGMA_CUBE_JUMP, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
 					break;
 				case "MTAR":
-					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.8f);
+					world.playSound(player.getLocation(), Sound.ITEM_FLINTANDSTEEL_USE, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
 					break;
 				case "SMR":
-					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
 					break;
 				case "Type 25":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
 					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HAT, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
 					break;
 				case "HAMR":
-					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.8f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
 					break;
 				case "LSAT":
-					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);;
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
 					break;
 				case "RPD":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
 					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_SNARE, 1, 1);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
 					break;
 				case "Chicom CQB":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.8f);
 					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HAT, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
 					break;
 				case "MP5":
-					world.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.8f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
 					break;
 				case "PDW-57":
-					world.playSound(player.getLocation(), Sound.ENTITY_ARROW_SHOOT, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.8f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
 					break;
 				case "Barret M82A1":
-					world.playSound(player.getLocation(), Sound.BLOCK_CHEST_OPEN, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					world.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.4f, 2);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_CLOSE, 1, 0.5f);
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
 					break;
 				case "DSR 50":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
 					world.playSound(player.getLocation(), Sound.BLOCK_STONE_STEP, 1, 1);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					world.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.3f, 2);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_CLOSE, 1, 0.5f);
 					break;
 				case "SVU-AS":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
 					world.playSound(player.getLocation(), Sound.BLOCK_WOOD_STEP, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
 					break;
 				case "Ray Gun":
-					world.playSound(player.getLocation(), Sound.ENTITY_BLAZE_DEATH, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.3f, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					//world.playSound(player.getLocation(), Sound.ENTITY_BLAZE_DEATH, 1, 1);
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 1, 2);
+					world.playSound(player.getLocation(), Sound.BLOCK_CONDUIT_ATTACK_TARGET, 1, 2);
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_DEACTIVATE, 1, 1.8f);
+					
+					
+					
+					
+				//custom gun cases
+				case "BL42E":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
 					break;
+				case "Vindicator":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 0.6f, 0);
+					break;
+				case "FN High-Five":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					world.playSound(player.getLocation(), Sound.ENTITY_BAT_HURT, 0.5f, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0);
+					break;
+				case "Dart Strike-40":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					break;
+				case "Seedler":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_BEE_STING, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					break;
+				case "Howdy":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					//world.playSound(player.getLocation(), Sound.BLOCK_ANVIL_BREAK, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.3f, 2);
+					break;
+				case "Door Knocker":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					//world.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
+					
+					break;
+				case "One-Two Punch":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
+					break;
+				case "Red Ryder":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
+					break;
+				case "Gladiator":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					//world.playSound(player.getLocation(), Sound.ENTITY_BLAZE_HURT, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					break;
+				case "Like Clockwork":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.ENTITY_IRON_GOLEM_HURT, 1, 2);
+					break;
+				case "Ring Leader":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.ENTITY_IRON_GOLEM_STEP, 1, 1);
+					break;
+				case "FAIL":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.5f, 0.8f);
+					world.playSound(player.getLocation(), Sound.ITEM_FLINTANDSTEEL_USE, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
+					break;
+				case "No Laughing Matter":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.8f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					break;
+				case "Mellow Metronome":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					break;
+				case "Muy Rapido":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					break;
+				case "NSTAR":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.8f);
+					world.playSound(player.getLocation(), Sound.ITEM_FLINTANDSTEEL_USE, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
+					break;
+				case "SMH":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					break;
+				case "Mad Dog":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HAT, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					break;
+				case "PKAX":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.8f, 0.8f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					break;
+				case "LM5-IGMA":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);;
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					break;
+				case "OMG":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_SNARE, 1, 1);
+					break;
+				case "Lilpup BBQ":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.8f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HAT, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					break;
+				case "MP3":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.8f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					break;
+				case "BTW-55":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.8f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					break;
+				case "Parrot M8E":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					world.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.4f, 2);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_CLOSE, 1, 0.5f);
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
+					break;
+				case "DSM 5":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_STONE_STEP, 1, 1);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					world.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.3f, 2);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_CLOSE, 1, 0.5f);
+					break;
+				case "Low-SVU":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_WOOD_STEP, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					break;
+				case "Star Cannon":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.3f, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					//world.playSound(player.getLocation(), Sound.ENTITY_BLAZE_DEATH, 1, 1);
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.BLOCK_CONDUIT_ATTACK_TARGET, 1, 2);
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_DEACTIVATE, 1, 1.8f);
+					break;
+				
+				
+				//custom packa
+				case "BL42000R":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Voice of Justice":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 0.6f, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+				case "Ultra":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					world.playSound(player.getLocation(), Sound.ENTITY_BAT_HURT, 0.5f, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Ender Atomizer of Piercing-4000":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "C-3000 S33d-ch35":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_BEE_STING, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "H0wd3-d0":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					//world.playSound(player.getLocation(), Sound.BLOCK_ANVIL_BREAK, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.3f, 2);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Door Knocker of Impaling":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					//world.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1, 1);
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Seven-89":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Red Riptide":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Glad-I-Ate-Her":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					//world.playSound(player.getLocation(), Sound.ENTITY_BLAZE_HURT, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Winding Neutralizer 94000":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_IRON_GOLEM_HURT, 1, 2);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Skullcrusher":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_IRON_GOLEM_STEP, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "EPC WN":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.5f, 0.8f);
+					world.playSound(player.getLocation(), Sound.ITEM_FLINTANDSTEEL_USE, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Micro Aerator":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.8f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "777MM":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Mystificar":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Nano-Synthetic Taxonomically Anodized Redeemer":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.8f);
+					world.playSound(player.getLocation(), Sound.ITEM_FLINTANDSTEEL_USE, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "SM1L3R":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Echoes of Loyalty":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HAT, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "MNG-PKAX":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.8f, 0.8f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "SIGMA":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);;
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Oxygen Mutating Galvinzier":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_SNARE, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Cataclysmic Matriarch Quadruple Burst":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.8f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HAT, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Avanced Wavform":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.8f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Bacterial Trigger Warning 55000":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.8f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Macro Annihilator":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					world.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.4f, 2);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_CLOSE, 1, 0.5f);
+					world.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 0.5f);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Deep Space Messenger 5000":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_STONE_STEP, 1, 1);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					world.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.3f, 2);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_CLOSE, 1, 0.5f);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Shadowy Veil Utilizer":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_WOOD_STEP, 1, 1);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 1, 0);
+					
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					break;
+				case "Porter's X2 Super Star Shooter":
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.3f, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
+					
+					//world.playSound(player.getLocation(), Sound.ENTITY_BLAZE_DEATH, 1, 1);
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, 0.5f, 2);
+					world.playSound(player.getLocation(), Sound.BLOCK_CONDUIT_ATTACK_TARGET, 1, 2);
+					world.playSound(player.getLocation(), Sound.BLOCK_BEACON_DEACTIVATE, 1, 1.8f);
+					
+					world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
+					world.playSound(player.getLocation(), Sound.ENTITY_BLAZE_HURT, 1, 0);
+					break;
+				
+					
+				
+					
+					
+					
 				default:
+					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.6f, 0.6f);
 					world.playSound(player.getLocation(), Sound.BLOCK_LAVA_POP, 1, 1);
 					break;
 			}
@@ -320,7 +833,7 @@ public class GunInstance
 		else
 		{
 			if(gun instanceof PackAPunchGun)
-				world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 1);
+				world.playSound(player.getLocation(), Sound.ENTITY_GHAST_SHOOT, 1, 0);
 			else
 				world.playSound(player.getLocation(), Sound.BLOCK_LAVA_POP, 1, 1);
 		}

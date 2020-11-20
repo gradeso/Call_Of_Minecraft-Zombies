@@ -129,7 +129,7 @@ public class RandomBox
 					}
 					else if(time == 0)
 					{
-						if(!boxGame.isFireSale() && !boxGame.boxManager.isMultiBox() && boxGame.getTeddyBearPercent() != 0 && COMZombies.rand.nextInt(Math.max(1, (2 * boxGame.getTeddyBearPercent() - rollCount))) == 0 && rollCount > 4)
+						if(!boxGame.isFireSale() && !boxGame.boxManager.isMultiBox() && boxGame.getTeddyBearPercent() != 0 && COMZombies.rand.nextInt(Math.max(3, (2 * boxGame.getTeddyBearPercent() - rollCount + 2))) < 2 && rollCount > 4)
 						{
 							CommandUtil.sendMessageToPlayer(player, ChatColor.DARK_RED + "Teddy Bear!!!!!!");
 							item.setItemStack(new ItemStack(Material.TOTEM_OF_UNDYING));
@@ -139,6 +139,7 @@ public class RandomBox
 							item.setCustomName("Teddy Bear");
 							item.setCustomNameVisible(true);
 							isTeddyBear = true;
+							rollCount = 0;
 
 							COMZombies.scheduleTask(40, () ->
 							{
@@ -195,7 +196,6 @@ public class RandomBox
 
 	public void reset()
 	{
-		rollCount = 0;
 		gunSelected = false;
 		isTeddyBear = false;
 		if(item != null)

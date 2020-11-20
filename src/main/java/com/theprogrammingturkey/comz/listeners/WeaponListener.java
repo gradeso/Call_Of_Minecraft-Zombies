@@ -56,7 +56,7 @@ public class WeaponListener implements Listener
 					GunInstance gun = gunManager.getGun(player.getInventory().getHeldItemSlot());
 					if(gun.isReloading())
 					{
-						player.getLocation().getWorld().playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);
+						player.getLocation().getWorld().playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 1, 2);
 					}
 					else if(gun.wasShot())
 					{

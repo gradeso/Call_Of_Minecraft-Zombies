@@ -95,7 +95,7 @@ public class WeaponManager
 		weapons.add(new Weapon("Distractinator", WeaponType.MONKEY_BOMB));
 
 		CustomConfig conf = ConfigManager.getConfig(COMZConfig.GUNS);
-		PlayerWeaponManager.customResources = conf.getString("Resource Sounds", "off").equalsIgnoreCase("on");
+		PlayerWeaponManager.customResources = true;//conf.getString("Resource Sounds", "on").equalsIgnoreCase("on");
 		Map<BasicGun, String> packedGunsToAssign = new HashMap<>();
 		for(String group : conf.getConfigurationSection("Guns").getKeys(false))
 		{
