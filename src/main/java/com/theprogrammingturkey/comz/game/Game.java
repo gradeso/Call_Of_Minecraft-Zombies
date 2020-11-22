@@ -560,6 +560,14 @@ public class Game
 			endGame();
 			return;
 		}
+		
+		//round start revival squad
+		for(DownedPlayer dp : downedPlayerManager.getDownedPlayers()) {
+			if(dp.getPlayerWaiting()) {
+				dp.RoundRevivePlayer();
+			}
+		}
+		
 
 		waveNumber++;
 		int delay = 0;

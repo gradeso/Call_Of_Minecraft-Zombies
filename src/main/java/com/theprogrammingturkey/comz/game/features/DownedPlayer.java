@@ -30,6 +30,7 @@ public class DownedPlayer implements Listener
 	private Player reviver;
 	private Game game;
 	private boolean isPlayerDown;
+	private boolean isPlayerWaiting = false;
 	private boolean isBeingRevived = false;
 	private Location reviverLocation;
 	private int downTime = 0;
@@ -43,6 +44,10 @@ public class DownedPlayer implements Listener
 		this.player = player;
 		this.game = game;
 		COMZombies.getPlugin().registerSpecificClass(this);
+	}
+	
+	public boolean getPlayerWaiting() {
+		return isPlayerWaiting;
 	}
 
 	public void setPlayerDown(boolean isDowned)
@@ -123,11 +128,31 @@ public class DownedPlayer implements Listener
 			manager.addGun(guns[0]);
 			manager.addGun(guns[1]);
 			player.setWalkSpeed(0.2F);
+			player.setFlySpeed(3F);
 			player.setHealth(20);
 			setPlayerDown(false);
 			PointManager.addPoints(reviver, 10);
 			reviver = null;
 		});
+	}
+	
+	//special revive for new round start
+	public void RoundRevivePlayer()
+	{
+		isPlayerDown = false;
+		game.downedPlayerManager.removeDownedPlayer(DownedPlayer.this);
+		player.sendMessage(ChatColor.GREEN + "You have been revived!");
+		player.setGameMode(GameMode.SURVIVAL);
+		isBeingRevived = false;
+		//TODO we'll remove the guns next time
+		PlayerWeaponManager manager = game.getPlayersGun(player);
+		manager.removeGun(1);
+		manager.addGun(guns[0]);
+		manager.addGun(guns[1]);
+		
+		player.setWalkSpeed(0.2F);
+		player.setHealth(20);
+		setPlayerDown(false);
 	}
 
 	@EventHandler
@@ -149,7 +174,8 @@ public class DownedPlayer implements Listener
 			return;
 		if(isBeingRevived)
 			return;
-
+		if(isPlayerWaiting)
+			return;
 		reviver = tmp;
 		if(!(game.players.contains(reviver)))
 			return;
@@ -183,24 +209,32 @@ public class DownedPlayer implements Listener
 		{
 			COMZombies.scheduleTask(20, () ->
 			{
-				if(!isPlayerDown)
+				if(!isPlayerDown || isPlayerWaiting)
 					return;
 				downTime++;
 				//get multiple of number so fireworks go off less often
 				if(downTime % 5 == 0) {
+					player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + player.getName() + " is down and has " + (COMZombies.getPlugin().getConfig().getInt("config.ReviveSettings.MaxDownTime") - downTime) + " seconds to be revived!");
 					displayDown();
 				}
 				
 				scheduleTask();
 				player.setHealth(1);
-				player.setWalkSpeed(0.05F);
+				player.setWalkSpeed(0.02F);
+				
 				if(downTime >= COMZombies.getPlugin().getConfig().getInt("config.ReviveSettings.MaxDownTime"))
 				{
 					player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You have died!");
 					player.setHealth(20);
-					player.setWalkSpeed(0.2F);
-					game.removePlayer(player);
-					isPlayerDown = false;
+					
+					player.setGameMode(GameMode.SPECTATOR);
+					player.setWalkSpeed(0F);
+					player.setFlySpeed(0F);
+					
+					isPlayerWaiting = true;
+					//instead of removing try reseting the guns and respawning at new wave
+					//game.removePlayer(player);
+					//isPlayerDown = false;
 				}
 				else if(!game.downedPlayerManager.isDownedPlayer(DownedPlayer.this))
 				{
