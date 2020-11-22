@@ -56,7 +56,7 @@ public class DownedPlayer implements Listener
 			guns[0] = manager.removeGun(1);
 			guns[1] = manager.removeGun(2);
 			manager.removeGun(3);
-			manager.addGun(new GunInstance(WeaponManager.getGun("M1911"), player, 1));
+			manager.addGun(new GunInstance(WeaponManager.getGun("Seedler"), player, 1));
 			player.setGameMode(GameMode.CREATIVE);
 			player.setAllowFlight(false);
 		}
@@ -186,7 +186,11 @@ public class DownedPlayer implements Listener
 				if(!isPlayerDown)
 					return;
 				downTime++;
-				displayDown();
+				//get multiple of number so fireworks go off less often
+				if(downTime % 5 == 0) {
+					displayDown();
+				}
+				
 				scheduleTask();
 				player.setHealth(1);
 				player.setWalkSpeed(0.05F);
@@ -234,9 +238,9 @@ public class DownedPlayer implements Listener
 		if(flickern > 50)
 			flickr = true;
 
-		int r = (int) (Math.random() * 255);
-		int g = (int) (Math.random() * 255);
-		int b = (int) (Math.random() * 255);
+		int r = (int) (255);
+		int g = (int) (0);
+		int b = (int) (0);
 		Color color = Color.fromRGB(r, g, b);
 		int rand = (int) (Math.random() * 5);
 		Type type;

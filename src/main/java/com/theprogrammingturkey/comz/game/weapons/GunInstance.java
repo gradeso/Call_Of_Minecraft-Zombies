@@ -255,6 +255,7 @@ public class GunInstance
 					break;
 				case "Python":
 					world.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 0.6f);
+					world.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 0);
 					//world.playSound(player.getLocation(), Sound.BLOCK_ANVIL_BREAK, 1, 1);
 					
 					world.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.3f, 2);
