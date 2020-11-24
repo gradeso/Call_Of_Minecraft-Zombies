@@ -99,7 +99,7 @@ public class HellHoundSpawner extends RoundSpawner
 		setMaxHealth(wolf, strength);
 		wolf.setHealth(strength);
 
-		setSpeed(wolf, 1.5f);
+		setSpeed(wolf, 1.4f);
 
 
 		//Incase they can't get to the player

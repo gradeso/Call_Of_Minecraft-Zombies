@@ -140,8 +140,11 @@ public class DownedPlayer implements Listener
 	public void RoundRevivePlayer()
 	{
 		isPlayerDown = false;
-		game.downedPlayerManager.removeDownedPlayer(DownedPlayer.this);
+		//game.downedPlayerManager.removeDownedPlayer(DownedPlayer.this);
 		player.sendMessage(ChatColor.GREEN + "You have been revived!");
+		Location downLoc = player.getLocation();
+		downLoc.setY(downLoc.getY() + 1);
+		player.teleport(downLoc);
 		player.setGameMode(GameMode.SURVIVAL);
 		isBeingRevived = false;
 		//TODO we'll remove the guns next time

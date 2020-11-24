@@ -357,20 +357,20 @@ public class SpawnManager
 		//TODO: Configure round number
 		if(wave % 5 == 0)
 		{
-			mobsToSpawn = 10;
+			mobsToSpawn = 20;
 			roundSpawner = roundSpawnerMap.get(RoundSpawnType.HELL_HOUNDS);
-			setSpawnInterval(spawnInterval / spawnDelayFactor);
-			if(spawnInterval < 0.5)
-				spawnInterval = 0.5;
+			setSpawnInterval((spawnInterval * 2) / spawnDelayFactor);
+			if(spawnInterval < 0.2)
+				spawnInterval = 0.2;
 			return RoundSpawnType.HELL_HOUNDS;
 		}
 		else
 		{
-			mobsToSpawn = (int) ((wave * 0.15) * 30) + (2 * players.size());
+			mobsToSpawn = (int) ((wave * 0.15) * 80) + (2 * players.size());
 			roundSpawner = roundSpawnerMap.get(RoundSpawnType.REGULAR);
 			setSpawnInterval(spawnInterval / spawnDelayFactor);
-			if(spawnInterval < 0.5)
-				spawnInterval = 0.5;
+			if(spawnInterval < 0.05)
+				spawnInterval = 0.05;
 			return RoundSpawnType.REGULAR;
 		}
 	}

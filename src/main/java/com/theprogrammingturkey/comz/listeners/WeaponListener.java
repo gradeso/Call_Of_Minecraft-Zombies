@@ -35,12 +35,8 @@ import java.util.List;
 
 public class WeaponListener implements Listener
 {
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerInteractEvent(PlayerInteractEvent event)
+	private void shootGun(PlayerInteractEvent event, boolean wasFirstShot) 
 	{
-		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && BlockUtils.isSign(event.getClickedBlock().getType()))
-			return;
-
 		Player player = event.getPlayer();
 		if(GameManager.INSTANCE.isPlayerInGame(player))
 		{
@@ -53,12 +49,13 @@ public class WeaponListener implements Listener
 				PlayerWeaponManager gunManager = game.getPlayersGun(player);
 				if(gunManager.isGun())
 				{
+					//check first shot
 					GunInstance gun = gunManager.getGun(player.getInventory().getHeldItemSlot());
-					if(gun.isReloading())
+					if(gun.isReloading() && wasFirstShot)
 					{
 						player.getLocation().getWorld().playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 1, 2);
 					}
-					else if(gun.wasShot())
+					else if(gun.wasShot(wasFirstShot))
 					{
 						int shots = 1;
 						if(gun.getType().getWeaponType() == WeaponType.SHOTGUNS)
@@ -147,6 +144,22 @@ public class WeaponListener implements Listener
 				}
 			}
 		}
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerInteractEvent(PlayerInteractEvent event)
+	{
+		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && BlockUtils.isSign(event.getClickedBlock().getType()))
+			return;
+		
+		if(event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.LEFT_CLICK_BLOCK))
+			return;
+
+		COMZombies.scheduleTask(0, () -> shootGun(event, true));
+		COMZombies.scheduleTask(1, () -> shootGun(event, false));
+		COMZombies.scheduleTask(2, () -> shootGun(event, false));
+		COMZombies.scheduleTask(3, () -> shootGun(event, false));
+		COMZombies.scheduleTask(4, () -> shootGun(event, false));
 	}
 
 	@EventHandler

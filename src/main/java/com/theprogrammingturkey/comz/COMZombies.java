@@ -183,4 +183,8 @@ public class COMZombies extends JavaPlugin
 			return Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, runnable, delay, period);
 		return -1;
 	}
+	public static void cancelTask(int id) 
+	{
+		Bukkit.getScheduler().cancelTask(id);
+	}
 }

@@ -127,6 +127,8 @@ public class GunInstance
 	{
 		return isReloading;
 	}
+	private int reloadID = 0;
+	private boolean playingSound = false;
 
 	/**
 	 * Used to reload this current weapon. If the player contained in this gun
@@ -134,50 +136,72 @@ public class GunInstance
 	 */
 	public void reload()
 	{
-		if(PlayerWeaponManager.customResources)
-			player.getWorld().playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 1, 1.7f);
-
-		if(GameManager.INSTANCE.isPlayerInGame(player))
+		if(!isReloading) 
 		{
-			if(gun.clipAmmo == clipAmmo) return;
-			Game game = GameManager.INSTANCE.getGame(player);
-			final int reloadTime;
-			if(game.perkManager.hasPerk(player, PerkType.SPEED_COLA))
-				reloadTime = (ConfigManager.getMainConfig().reloadTime) / 2;
-			else reloadTime = ConfigManager.getMainConfig().reloadTime;
-			COMZombies.scheduleTask(reloadTime * 20, () ->
+			if(PlayerWeaponManager.customResources)
+				player.getWorld().playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 1, 1.7f);
+			
+			if(GameManager.INSTANCE.isPlayerInGame(player))
 			{
+				if(gun.clipAmmo == clipAmmo) return;
+				Game game = GameManager.INSTANCE.getGame(player);
+				final int reloadTime;
+				if(game.perkManager.hasPerk(player, PerkType.SPEED_COLA))
+					reloadTime = (ConfigManager.getMainConfig().reloadTime) / 2;
+				else reloadTime = ConfigManager.getMainConfig().reloadTime;
+				
+				//start reload sound
+				if(!playingSound) 
+				{
+					//int reloadID = COMZombies.scheduleTask(0, 10,() -> player.getWorld().playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 1, 2));
+					//playingSound = true;
+				}
+				
+				COMZombies.scheduleTask(reloadTime * 20, () ->
+				{
 
-				if(!(totalAmmo - (gun.clipAmmo - clipAmmo) < 0))
-				{
-					totalAmmo -= (gun.clipAmmo - clipAmmo);
-					clipAmmo = gun.clipAmmo;
-				}
-				else
-				{
-					clipAmmo = totalAmmo;
-					totalAmmo = 0;
-				}
-				isReloading = false;
-				ecUsed = false;
-				updateGun();
-			});
-			isReloading = true;
-			if(game.perkManager.getPlayersPerks(player).contains(PerkType.ELECTRIC_C))
-			{
-				if(totalAmmo == 0 && !ecUsed)
-					return;
-				ecUsed = true;
-				List<Entity> near = player.getNearbyEntities(6, 6, 6);
-				for(Entity ent : near)
-				{
-					if(ent instanceof Mob)
+					if(!(totalAmmo - (gun.clipAmmo - clipAmmo) < 0))
 					{
-						if(game.spawnManager.getEntities().contains(ent))
+						totalAmmo -= (gun.clipAmmo - clipAmmo);
+						clipAmmo = gun.clipAmmo;
+					}
+					else
+					{
+						clipAmmo = totalAmmo;
+						totalAmmo = 0;
+					}
+					
+					//cancel reloading sound and play ending
+					if(reloadID != 0) 
+					{
+						//COMZombies.cancelTask(reloadID);
+						//reloadID = 0;
+						//playingSound = false;
+					}
+					player.getWorld().playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 1, 1.5f);
+					player.getWorld().playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 1, 1.2f);
+					
+					isReloading = false;
+					ecUsed = false;
+					updateGun();
+				});
+				isReloading = true;
+				if(game.perkManager.getPlayersPerks(player).contains(PerkType.ELECTRIC_C))
+				{
+					if(totalAmmo == 0 && !ecUsed)
+						return;
+					ecUsed = true;
+					List<Entity> near = player.getNearbyEntities(6, 6, 6);
+					for(Entity ent : near)
+					{
+						if(ent instanceof Mob)
 						{
-							World world = player.getWorld();
-							world.strikeLightningEffect(ent.getLocation());
-							game.damageMob((Mob) ent, player, 10);
+							if(game.spawnManager.getEntities().contains(ent))
+							{
+								World world = player.getWorld();
+								world.strikeLightningEffect(ent.getLocation());
+								game.damageMob((Mob) ent, player, 10);
+							}
 						}
 					}
 				}
@@ -199,7 +223,7 @@ public class GunInstance
 	 * Called when the gun was shot, decrements total ammo count and reloads if
 	 * the bullet shot was the last in the clip.
 	 */
-	public boolean wasShot()
+	public boolean wasShot(boolean wasFirstShot)
 	{
 		if(isReloading)
 			return false;
@@ -209,8 +233,11 @@ public class GunInstance
 
 		if(totalAmmo == 0 && clipAmmo == 0)
 		{
-			CommandUtil.sendMessageToPlayer(player, ChatColor.RED + "No ammo!");
-			player.getWorld().playSound(player.getLocation(), Sound.BLOCK_IRON_TRAPDOOR_CLOSE, 1, 2);
+			if(wasFirstShot) {
+				CommandUtil.sendMessageToPlayer(player, ChatColor.RED + "No ammo!");
+				player.getWorld().playSound(player.getLocation(), Sound.BLOCK_IRON_TRAPDOOR_CLOSE, 1, 2);
+			}
+			
 			return false;
 		}
 

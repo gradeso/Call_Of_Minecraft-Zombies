@@ -54,6 +54,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -562,9 +563,14 @@ public class Game
 		}
 		
 		//round start revival squad
-		for(DownedPlayer dp : downedPlayerManager.getDownedPlayers()) {
-			if(dp.getPlayerWaiting()) {
+		Iterator<DownedPlayer> itr = downedPlayerManager.getDownedPlayers().iterator();
+		while(itr.hasNext()) 
+		{
+			DownedPlayer dp = itr.next();
+			if(dp.getPlayerWaiting()) 
+			{
 				dp.RoundRevivePlayer();
+				itr.remove();
 			}
 		}
 		
@@ -637,7 +643,7 @@ public class Game
 			PointManager.setPoints(player, 500);
 			assignPlayerInventory(player);
 			player.setGameMode(GameMode.SURVIVAL);
-			String gunName = ConfigManager.getConfig(COMZConfig.GUNS).getString("StartingGun", "M1911");
+			String gunName = ConfigManager.getConfig(COMZConfig.GUNS).getString("StartingGun", "Seedler");
 
 			COMZombies plugin = COMZombies.getPlugin();
 			for(Player pl : players)
